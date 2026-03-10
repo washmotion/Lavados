@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wash Motion — Lavado de Autos</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --azul: #0057FF;
+    --azul-dark: #0040CC;
+    --negro: #0A0A0A;
+    --gris: #F2F2F0;
+    --blanco: #FFFFFF;
+    --acento: #00E5FF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.25) 0%, transparent 70%),
+      var(--negro);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,87,255,0.15);
+    border: 1px solid rgba(0,87,255,0.4);
+    color: var(--acento);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--acento);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 14vw, 160px);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    animation: fadeDown 0.7s 0.1s ease both;
+  }
+
+  .hero h1 span {
+    color: var(--azul);
+    display: block;
+  }
+
+  .hero .subtitle {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    max-width: 440px;
+    line-height: 1.6;
+    margin: 24px auto 48px;
+    animation: fadeDown 0.7s 0.2s ease both;
+  }
+
+  .btn-reservar {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--azul);
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 20px 48px;
+    border-radius: 100px;
+    transition: all 0.25s ease;
+    animation: fadeDown 0.7s 0.3s ease both;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,87,255,0.4);
+  }
+
+  .btn-reservar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    border-radius: inherit;
+  }
+
+  .btn-reservar:hover {
+    background: var(--azul-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(0,87,255,0.6);
+  }
+
+  .btn-reservar svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.25s ease;
+  }
+
+  .btn-reservar:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* ── CLIMA ── */
+  .clima-bar {
+    margin-top: 56px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.35);
+    font-size: 14px;
+    animation: fadeDown 0.7s 0.4s ease both;
+  }
+
+  .clima-bar span {
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+  }
+
+  /* ── SECCIÓN INFO ── */
+  .info {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .info-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px 24px;
+    transition: border-color 0.2s ease;
+  }
+
+  .info-card:hover {
+    border-color: rgba(0,87,255,0.4);
+  }
+
+  .info-card .icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .info-card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .info-card p {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blanco);
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.25);
+    font-size: 13px;
+  }
+
+  /* ── ANIMACIONES ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 480px) {
+    .btn-reservar { padding: 18px 36px; font-size: 16px; }
+    .info { padding: 56px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="badge">Abierto ahora — turnos disponibles</div>
+
+  <h1>
+    Wash
+    <span>Motion</span>
+  </h1>
+
+  <p class="subtitle">
+    Tu auto reluciente en minutos.<br>
+    Reservá tu turno sin llamadas ni esperas.
+  </p>
+
+  <!-- ↓ REEMPLAZÁ CON TU LINK DE APPSHEET -->
+  <a href="https://www.appsheet.com/start/f485a1e0-0216-438c-baea-ae4a8f492d79" class="btn-reservar">
+    Reservar turno
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </a>
+
+  <!-- CLIMA — reemplazá Rosario por tu ciudad si hace falta -->
+  <div class="clima-bar">
+    🌤
+    <span id="clima-texto">Cargando clima...</span>
+  </div>
+</section>
+
+<section class="info">
+  <div class="info-grid">
+
+    <div class="info-card">
+      <span class="icon">📍</span>
+      <h3>Ubicación</h3>
+      <!-- ↓ REEMPLAZÁ CON TU DIRECCIÓN -->
+      <p>Av. Pellegrini 1200<br>Rosario, Santa Fe</p>
+    </div>
+
+    <div class="info-card">
+      <span class="icon">🕐</span>
+      <h3>Horario</h3>
+      <!-- ↓ REEMPLAZÁ CON TU HORARIO -->
+      <p>Lun a Sáb<br>8:00 — 18:00 hs</p>
+    </div>
+
+    <div class="info-card">
+      <span class="icon">💬</span>
+      <h3>Consultas</h3>
+      <!-- ↓ REEMPLAZÁ CON TU WHATSAPP -->
+      <p>WhatsApp<br>+54 9 341 000-0000</p>
+    </div>
+
+    <div class="info-card">
+      <span class="icon">✨</span>
+      <h3>Servicio</h3>
+      <p>Lavado completo<br>interior y exterior</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Wash Motion — Lavado de autos
+</footer>
+
+<script>
+  // Clima via wttr.in — sin API key
+  fetch('https://wttr.in/Rosario?format=%C+%t&lang=es')
+    .then(r => r.text())
+    .then(texto => {
+      document.getElementById('clima-texto').textContent = 'Rosario — ' + texto.trim();
+    })
+    .catch(() => {
+      document.getElementById('clima-texto').textContent = 'Clima no disponible';
+    });
+</script>
+
+</body>
+</html>
