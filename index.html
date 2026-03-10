@@ -37,7 +37,7 @@
     padding: 40px 24px;
     position: relative;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.22) 0%, transparent 70%),
       var(--negro);
     overflow: hidden;
   }
@@ -47,46 +47,48 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
     background-size: 40px 40px;
     pointer-events: none;
   }
 
+  /* ── BADGE ── */
   .badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0,87,255,0.15);
-    border: 1px solid rgba(0,87,255,0.4);
+    background: rgba(0,87,255,0.12);
+    border: 1px solid rgba(0,87,255,0.35);
     color: var(--acento);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 8px 18px;
+    padding: 7px 16px;
     border-radius: 100px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     animation: fadeDown 0.6s ease both;
   }
 
   .badge-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px; height: 6px;
     border-radius: 50%;
     background: var(--acento);
     animation: pulse 2s ease infinite;
+    flex-shrink: 0;
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.8); }
+    50%       { opacity: 0.35; transform: scale(0.75); }
   }
 
+  /* ── TÍTULO ── */
   .hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(72px, 14vw, 160px);
-    line-height: 0.9;
+    font-size: clamp(80px, 15vw, 168px);
+    line-height: 0.88;
     letter-spacing: -0.01em;
     margin-bottom: 8px;
     animation: fadeDown 0.7s 0.1s ease both;
@@ -98,15 +100,16 @@
   }
 
   .subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    color: rgba(255,255,255,0.5);
+    font-size: clamp(15px, 2vw, 18px);
+    color: rgba(255,255,255,0.45);
     font-weight: 300;
-    max-width: 440px;
-    line-height: 1.6;
-    margin: 24px auto 48px;
+    max-width: 400px;
+    line-height: 1.65;
+    margin: 20px auto 40px;
     animation: fadeDown 0.7s 0.2s ease both;
   }
 
+  /* ── BOTÓN ── */
   .btn-reservar {
     display: inline-flex;
     align-items: center;
@@ -114,115 +117,191 @@
     background: var(--azul);
     color: var(--blanco);
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 20px 48px;
+    padding: 18px 44px;
     border-radius: 100px;
     transition: all 0.25s ease;
     animation: fadeDown 0.7s 0.3s ease both;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 40px rgba(0,87,255,0.4);
+    box-shadow: 0 0 40px rgba(0,87,255,0.35);
   }
 
   .btn-reservar::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
     border-radius: inherit;
   }
 
   .btn-reservar:hover {
     background: var(--azul-dark);
     transform: translateY(-2px);
-    box-shadow: 0 0 60px rgba(0,87,255,0.6);
+    box-shadow: 0 0 56px rgba(0,87,255,0.55);
   }
 
   .btn-reservar svg {
-    width: 20px; height: 20px;
+    width: 18px; height: 18px;
     transition: transform 0.25s ease;
   }
-
   .btn-reservar:hover svg { transform: translateX(4px); }
 
-  /* ── CLIMA ── */
-  .clima-bar {
-    margin-top: 48px;
+  /* ── CLIMA ACTUAL ── */
+  .clima-actual {
+    margin-top: 40px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    animation: fadeDown 0.7s 0.4s ease both;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: rgba(255,255,255,0.35);
-    font-size: 14px;
-    animation: fadeDown 0.7s 0.4s ease both;
-    min-height: 24px;
+    gap: 8px;
+    min-height: 22px;
   }
 
-  .clima-bar span { color: rgba(255,255,255,0.6); font-weight: 500; }
+  .clima-actual span { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+  /* ── FORECAST ── */
+  .forecast-wrap {
+    margin-top: 20px;
+    animation: fadeDown 0.7s 0.5s ease both;
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .forecast-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .fc {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .fc-dia {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .fc-icono { font-size: 22px; display: block; margin-bottom: 6px; }
+
+  .fc-temp {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--blanco);
+  }
+
+  .fc-temp .mn {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.35);
+    margin-left: 2px;
+  }
+
+  .fc-desc {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* skeleton mientras carga */
+  .fc.skeleton {
+    min-height: 90px;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0.04) 25%,
+      rgba(255,255,255,0.07) 50%,
+      rgba(255,255,255,0.04) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s infinite;
+    border-color: transparent;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
 
   /* ── INFO CARDS ── */
   .info {
-    padding: 72px 24px 80px;
-    max-width: 900px;
+    padding: 64px 24px 72px;
+    max-width: 880px;
     margin: 0 auto;
   }
 
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
   }
 
   .info-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 28px 24px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 24px 20px;
     transition: border-color 0.2s ease;
   }
 
-  .info-card:hover { border-color: rgba(0,87,255,0.4); }
+  .info-card:hover { border-color: rgba(0,87,255,0.35); }
 
-  .info-card .icon { font-size: 26px; margin-bottom: 14px; display: block; }
+  .info-card .icon {
+    font-size: 24px;
+    margin-bottom: 12px;
+    display: block;
+  }
 
   .info-card h3 {
-    font-size: 11px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.35);
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.3);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
   }
 
   .info-card p {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     color: var(--blanco);
     line-height: 1.55;
   }
 
-  /* estado operando */
-  .estado-si  { color: #4ade80; }
-  .estado-no  { color: rgba(255,255,255,0.35); }
+  .estado-no { color: rgba(255,255,255,0.3); }
 
   /* ── FOOTER ── */
   footer {
     text-align: center;
-    padding: 28px 24px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.2);
-    font-size: 13px;
+    padding: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.18);
+    font-size: 12px;
   }
 
   /* ── ANIMACIONES ── */
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-14px); }
+    from { opacity: 0; transform: translateY(-12px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  @media (max-width: 480px) {
-    .btn-reservar { padding: 18px 36px; font-size: 16px; }
-    .info { padding: 56px 16px; }
+  /* ── MOBILE ── */
+  @media (max-width: 520px) {
+    .btn-reservar { padding: 16px 32px; font-size: 15px; }
+    .info { padding: 48px 16px 56px; }
+    .forecast-row { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .fc { padding: 12px 6px; }
+    .fc-icono { font-size: 18px; }
+    .fc-temp { font-size: 14px; }
   }
 </style>
 </head>
@@ -254,23 +333,35 @@
     </svg>
   </a>
 
-  <div class="clima-bar">
+  <!-- Clima actual -->
+  <div class="clima-actual">
     <span id="clima-icono">🌤</span>
     <span id="clima-texto">Cargando clima...</span>
   </div>
 
+  <!-- Pronóstico 4 días -->
+  <div class="forecast-wrap">
+    <div class="forecast-row" id="forecast-row">
+      <div class="fc skeleton"></div>
+      <div class="fc skeleton"></div>
+      <div class="fc skeleton"></div>
+      <div class="fc skeleton"></div>
+    </div>
+  </div>
+
 </section>
 
+<!-- Info cards -->
 <section class="info">
-  <div class="info-grid">
+  <div class="info-grid" id="info-grid">
 
-    <div class="info-card">
+    <div class="info-card" id="card-ubicacion-wrap">
       <span class="icon">📍</span>
       <h3>Ubicación de hoy</h3>
       <p id="card-ubicacion">Cargando...</p>
     </div>
 
-    <div class="info-card">
+    <div class="info-card" id="card-horario-wrap">
       <span class="icon">🕐</span>
       <h3>Horario de hoy</h3>
       <p id="card-horario">Cargando...</p>
@@ -292,74 +383,101 @@
   </div>
 </section>
 
-<footer>
-  © 2026 Wash Motion — Lavado de autos
-</footer>
+<footer>© 2026 Wash Motion — Lavado de autos</footer>
 
 <script>
-  // ── 1. UBICACIÓN Y HORARIO DINÁMICO ──────────────────────────────
-  // Reemplazá con la URL de tu Web App de Apps Script
-  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxJul8QSR4evP2671aZm9PjCPDHfAh7UexievKIKPND__IKZyDo4OxbSw3qiU1d0rB0cg/exec';
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbyCqNygdY--527MtsqIaNUUY8XVNAo-tmWaG1oESvRZZ_QjjqIoYGWn2kDuDGQSifFNjw/exec';
+  const LAT  = -32.9468;
+  const LON  = -60.6393;
+  const DIAS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
 
+  const WMO = {
+    0:'Despejado',1:'Mayorm. despejado',2:'Parc. nublado',3:'Nublado',
+    45:'Neblina',48:'Neblina',51:'Llovizna leve',53:'Llovizna',55:'Llovizna int.',
+    61:'Lluvia leve',63:'Lluvia',65:'Lluvia int.',71:'Nieve leve',73:'Nieve',75:'Nieve int.',
+    80:'Chaparrones',81:'Chaparrones',82:'Chaparrones f.',95:'Tormenta',96:'Tormenta',99:'Tormenta',
+  };
+  const ICONOS = {
+    0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',
+    61:'🌧',63:'🌧',65:'🌧',71:'❄️',73:'❄️',75:'❄️',80:'🌦',81:'🌧',82:'⛈',
+    95:'⛈',96:'⛈',99:'⛈',
+  };
+
+  // ── UBICACIÓN DINÁMICA ──
   fetch(WEBAPP_URL)
     .then(r => r.json())
     .then(data => {
-      if (data.operando) {
-        document.getElementById('card-ubicacion').textContent = data.ubicacion;
-        document.getElementById('card-horario').textContent   = data.horario;
-        document.getElementById('badge-texto').textContent    = 'Abierto hoy — turnos disponibles';
-      } else {
+      const grid = document.getElementById('info-grid');
+
+      if (!data.operando || !data.ubicaciones || data.ubicaciones.length === 0) {
+        document.getElementById('card-ubicacion').innerHTML = '<span class="estado-no">Sin operación hoy</span>';
+        document.getElementById('card-horario').innerHTML   = '<span class="estado-no">—</span>';
+        document.getElementById('badge-texto').textContent  = 'Sin operación hoy';
+        return;
+      }
+
+      document.getElementById('badge-texto').textContent = 'Abierto hoy — turnos disponibles';
+
+      if (data.ubicaciones.length === 1) {
+        const u = data.ubicaciones[0];
         document.getElementById('card-ubicacion').innerHTML =
-          '<span class="estado-no">Sin operación hoy</span>';
-        document.getElementById('card-horario').innerHTML =
-          '<span class="estado-no">—</span>';
-        document.getElementById('badge-texto').textContent = 'Sin operación hoy';
+          u.direccion ? `${u.nombre}<br><span style="font-size:12px;color:rgba(255,255,255,0.4)">${u.direccion}</span>` : u.nombre;
+        document.getElementById('card-horario').textContent = u.horario;
+      } else {
+        // Múltiples carpas — reemplazar las dos primeras cards
+        document.getElementById('card-ubicacion-wrap').remove();
+        document.getElementById('card-horario-wrap').remove();
+        data.ubicaciones.reverse().forEach(u => {
+          const card = document.createElement('div');
+          card.className = 'info-card';
+          card.innerHTML = `
+            <span class="icon">📍</span>
+            <h3>Hoy</h3>
+            <p><strong>${u.nombre}</strong>${u.direccion ? `<br><span style="font-size:12px;color:rgba(255,255,255,0.4)">${u.direccion}</span>` : ''}<br>
+            <span style="font-size:12px;color:rgba(255,255,255,0.45)">${u.horario}</span></p>`;
+          grid.insertBefore(card, grid.firstChild);
+        });
       }
     })
     .catch(() => {
       document.getElementById('card-ubicacion').textContent = 'No disponible';
-      document.getElementById('card-horario').textContent   = 'No disponible';
+      document.getElementById('card-horario').textContent   = '—';
       document.getElementById('badge-texto').textContent    = 'Wash Motion';
     });
 
-
-  // ── 2. CLIMA — Open-Meteo (sin API key, funciona desde GitHub Pages) ──
-  // Coordenadas de Rosario, Argentina. Cambiá si la carpa está en otra ciudad.
-  const LAT = -32.9468;
-  const LON = -60.6393;
-
-  const WMO = {
-    0:'Despejado', 1:'Mayormente despejado', 2:'Parcialmente nublado',
-    3:'Nublado', 45:'Neblina', 48:'Neblina con escarcha',
-    51:'Llovizna leve', 53:'Llovizna moderada', 55:'Llovizna intensa',
-    61:'Lluvia leve', 63:'Lluvia moderada', 65:'Lluvia intensa',
-    71:'Nieve leve', 73:'Nieve moderada', 75:'Nieve intensa',
-    80:'Chaparrones leves', 81:'Chaparrones moderados', 82:'Chaparrones intensos',
-    95:'Tormenta', 96:'Tormenta con granizo', 99:'Tormenta intensa',
-  };
-
-  const ICONOS = {
-    0:'☀️', 1:'🌤', 2:'⛅', 3:'☁️', 45:'🌫', 48:'🌫',
-    51:'🌦', 53:'🌦', 55:'🌧', 61:'🌧', 63:'🌧', 65:'🌧',
-    71:'❄️', 73:'❄️', 75:'❄️', 80:'🌦', 81:'🌧', 82:'⛈',
-    95:'⛈', 96:'⛈', 99:'⛈',
-  };
-
-  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&temperature_unit=celsius&timezone=America%2FArgentina%2FBuenos_Aires`)
+  // ── CLIMA + FORECAST ──
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&temperature_unit=celsius&timezone=America%2FArgentina%2FBuenos_Aires&forecast_days=4`)
     .then(r => r.json())
     .then(data => {
-      const w     = data.current_weather;
-      const code  = w.weathercode;
-      const temp  = Math.round(w.temperature);
-      const desc  = WMO[code] || 'Clima variable';
-      const icono = ICONOS[code] || '🌤';
+      // Clima actual
+      const w = data.current_weather;
+      document.getElementById('clima-icono').textContent = ICONOS[w.weathercode] || '🌤';
+      document.getElementById('clima-texto').textContent =
+        `${Math.round(w.temperature)}°C — ${WMO[w.weathercode] || 'Variable'}`;
 
-      document.getElementById('clima-icono').textContent = icono;
-      document.getElementById('clima-texto').textContent = `${temp}°C — ${desc}`;
+      // Forecast 4 días
+      const row = document.getElementById('forecast-row');
+      row.innerHTML = '';
+      for (let i = 0; i < 4; i++) {
+        const fecha  = new Date(data.daily.time[i] + 'T12:00:00');
+        const nombre = i === 0 ? 'Hoy' : i === 1 ? 'Mañana' : DIAS[fecha.getDay()];
+        const c      = data.daily.weathercode[i];
+        const max    = Math.round(data.daily.temperature_2m_max[i]);
+        const min    = Math.round(data.daily.temperature_2m_min[i]);
+        const card   = document.createElement('div');
+        card.className = 'fc';
+        card.innerHTML = `
+          <div class="fc-dia">${nombre}</div>
+          <span class="fc-icono">${ICONOS[c] || '🌤'}</span>
+          <div class="fc-temp">${max}°<span class="mn">${min}°</span></div>
+          <div class="fc-desc">${WMO[c] || 'Variable'}</div>`;
+        row.appendChild(card);
+      }
     })
     .catch(() => {
       document.getElementById('clima-icono').textContent = '';
       document.getElementById('clima-texto').textContent = '';
+      document.getElementById('forecast-row').innerHTML  = '';
     });
 </script>
 
