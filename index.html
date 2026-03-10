@@ -12,7 +12,6 @@
     --azul: #0057FF;
     --azul-dark: #0040CC;
     --negro: #0A0A0A;
-    --gris: #F2F2F0;
     --blanco: #FFFFFF;
     --acento: #00E5FF;
   }
@@ -24,6 +23,7 @@
     background: var(--negro);
     color: var(--blanco);
     overflow-x: hidden;
+    min-height: 100vh;
   }
 
   /* ── HERO ── */
@@ -70,8 +70,7 @@
     animation: fadeDown 0.6s ease both;
   }
 
-  .badge::before {
-    content: '';
+  .badge-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
@@ -81,7 +80,7 @@
 
   @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
+    50%       { opacity: 0.4; transform: scale(0.8); }
   }
 
   .hero h1 {
@@ -98,7 +97,7 @@
     display: block;
   }
 
-  .hero .subtitle {
+  .subtitle {
     font-size: clamp(16px, 2.5vw, 20px);
     color: rgba(255,255,255,0.5);
     font-weight: 300;
@@ -141,42 +140,37 @@
   }
 
   .btn-reservar svg {
-    width: 20px;
-    height: 20px;
+    width: 20px; height: 20px;
     transition: transform 0.25s ease;
   }
 
-  .btn-reservar:hover svg {
-    transform: translateX(4px);
-  }
+  .btn-reservar:hover svg { transform: translateX(4px); }
 
   /* ── CLIMA ── */
   .clima-bar {
-    margin-top: 56px;
+    margin-top: 48px;
     display: flex;
     align-items: center;
     gap: 10px;
     color: rgba(255,255,255,0.35);
     font-size: 14px;
     animation: fadeDown 0.7s 0.4s ease both;
+    min-height: 24px;
   }
 
-  .clima-bar span {
-    color: rgba(255,255,255,0.6);
-    font-weight: 500;
-  }
+  .clima-bar span { color: rgba(255,255,255,0.6); font-weight: 500; }
 
-  /* ── SECCIÓN INFO ── */
+  /* ── INFO CARDS ── */
   .info {
-    padding: 80px 24px;
+    padding: 72px 24px 80px;
     max-width: 900px;
     margin: 0 auto;
   }
 
   .info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
   }
 
   .info-card {
@@ -187,48 +181,45 @@
     transition: border-color 0.2s ease;
   }
 
-  .info-card:hover {
-    border-color: rgba(0,87,255,0.4);
-  }
+  .info-card:hover { border-color: rgba(0,87,255,0.4); }
 
-  .info-card .icon {
-    font-size: 28px;
-    margin-bottom: 14px;
-    display: block;
-  }
+  .info-card .icon { font-size: 26px; margin-bottom: 14px; display: block; }
 
   .info-card h3 {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 500;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.35);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     margin-bottom: 6px;
   }
 
   .info-card p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--blanco);
-    line-height: 1.5;
+    line-height: 1.55;
   }
+
+  /* estado operando */
+  .estado-si  { color: #4ade80; }
+  .estado-no  { color: rgba(255,255,255,0.35); }
 
   /* ── FOOTER ── */
   footer {
     text-align: center;
-    padding: 32px 24px;
+    padding: 28px 24px;
     border-top: 1px solid rgba(255,255,255,0.06);
-    color: rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.2);
     font-size: 13px;
   }
 
   /* ── ANIMACIONES ── */
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-16px); }
+    from { opacity: 0; transform: translateY(-14px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── MOBILE ── */
   @media (max-width: 480px) {
     .btn-reservar { padding: 18px 36px; font-size: 16px; }
     .info { padding: 56px 16px; }
@@ -238,7 +229,11 @@
 <body>
 
 <section class="hero">
-  <div class="badge">Abierto ahora — turnos disponibles</div>
+
+  <div class="badge">
+    <span class="badge-dot"></span>
+    <span id="badge-texto">Cargando...</span>
+  </div>
 
   <h1>
     Wash
@@ -250,19 +245,20 @@
     Reservá tu turno sin llamadas ni esperas.
   </p>
 
-  <!-- ↓ REEMPLAZÁ CON TU LINK DE APPSHEET -->
-  <a href="https://www.appsheet.com/start/f485a1e0-0216-438c-baea-ae4a8f492d79" class="btn-reservar">
+  <a href="https://www.appsheet.com/start/f485a1e0-0216-438c-baea-ae4a8f492d79"
+     class="btn-reservar">
     Reservar turno
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round">
       <path d="M5 12h14M12 5l7 7-7 7"/>
     </svg>
   </a>
 
-  <!-- CLIMA — reemplazá Rosario por tu ciudad si hace falta -->
   <div class="clima-bar">
-    🌤
+    <span id="clima-icono">🌤</span>
     <span id="clima-texto">Cargando clima...</span>
   </div>
+
 </section>
 
 <section class="info">
@@ -270,16 +266,14 @@
 
     <div class="info-card">
       <span class="icon">📍</span>
-      <h3>Ubicación</h3>
-      <!-- ↓ REEMPLAZÁ CON TU DIRECCIÓN -->
-      <p>Av. Pellegrini 1200<br>Rosario, Santa Fe</p>
+      <h3>Ubicación de hoy</h3>
+      <p id="card-ubicacion">Cargando...</p>
     </div>
 
     <div class="info-card">
       <span class="icon">🕐</span>
-      <h3>Horario</h3>
-      <!-- ↓ REEMPLAZÁ CON TU HORARIO -->
-      <p>Lun a Sáb<br>8:00 — 18:00 hs</p>
+      <h3>Horario de hoy</h3>
+      <p id="card-horario">Cargando...</p>
     </div>
 
     <div class="info-card">
@@ -303,14 +297,69 @@
 </footer>
 
 <script>
-  // Clima via wttr.in — sin API key
-  fetch('https://wttr.in/Rosario?format=%C+%t&lang=es')
-    .then(r => r.text())
-    .then(texto => {
-      document.getElementById('clima-texto').textContent = 'Rosario — ' + texto.trim();
+  // ── 1. UBICACIÓN Y HORARIO DINÁMICO ──────────────────────────────
+  // Reemplazá con la URL de tu Web App de Apps Script
+  const WEBAPP_URL = 'https://script.google.com/macros/s/AKfycbxJul8QSR4evP2671aZm9PjCPDHfAh7UexievKIKPND__IKZyDo4OxbSw3qiU1d0rB0cg/exec';
+
+  fetch(WEBAPP_URL)
+    .then(r => r.json())
+    .then(data => {
+      if (data.operando) {
+        document.getElementById('card-ubicacion').textContent = data.ubicacion;
+        document.getElementById('card-horario').textContent   = data.horario;
+        document.getElementById('badge-texto').textContent    = 'Abierto hoy — turnos disponibles';
+      } else {
+        document.getElementById('card-ubicacion').innerHTML =
+          '<span class="estado-no">Sin operación hoy</span>';
+        document.getElementById('card-horario').innerHTML =
+          '<span class="estado-no">—</span>';
+        document.getElementById('badge-texto').textContent = 'Sin operación hoy';
+      }
     })
     .catch(() => {
-      document.getElementById('clima-texto').textContent = 'Clima no disponible';
+      document.getElementById('card-ubicacion').textContent = 'No disponible';
+      document.getElementById('card-horario').textContent   = 'No disponible';
+      document.getElementById('badge-texto').textContent    = 'Wash Motion';
+    });
+
+
+  // ── 2. CLIMA — Open-Meteo (sin API key, funciona desde GitHub Pages) ──
+  // Coordenadas de Rosario, Argentina. Cambiá si la carpa está en otra ciudad.
+  const LAT = -32.9468;
+  const LON = -60.6393;
+
+  const WMO = {
+    0:'Despejado', 1:'Mayormente despejado', 2:'Parcialmente nublado',
+    3:'Nublado', 45:'Neblina', 48:'Neblina con escarcha',
+    51:'Llovizna leve', 53:'Llovizna moderada', 55:'Llovizna intensa',
+    61:'Lluvia leve', 63:'Lluvia moderada', 65:'Lluvia intensa',
+    71:'Nieve leve', 73:'Nieve moderada', 75:'Nieve intensa',
+    80:'Chaparrones leves', 81:'Chaparrones moderados', 82:'Chaparrones intensos',
+    95:'Tormenta', 96:'Tormenta con granizo', 99:'Tormenta intensa',
+  };
+
+  const ICONOS = {
+    0:'☀️', 1:'🌤', 2:'⛅', 3:'☁️', 45:'🌫', 48:'🌫',
+    51:'🌦', 53:'🌦', 55:'🌧', 61:'🌧', 63:'🌧', 65:'🌧',
+    71:'❄️', 73:'❄️', 75:'❄️', 80:'🌦', 81:'🌧', 82:'⛈',
+    95:'⛈', 96:'⛈', 99:'⛈',
+  };
+
+  fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&temperature_unit=celsius&timezone=America%2FArgentina%2FBuenos_Aires`)
+    .then(r => r.json())
+    .then(data => {
+      const w     = data.current_weather;
+      const code  = w.weathercode;
+      const temp  = Math.round(w.temperature);
+      const desc  = WMO[code] || 'Clima variable';
+      const icono = ICONOS[code] || '🌤';
+
+      document.getElementById('clima-icono').textContent = icono;
+      document.getElementById('clima-texto').textContent = `${temp}°C — ${desc}`;
+    })
+    .catch(() => {
+      document.getElementById('clima-icono').textContent = '';
+      document.getElementById('clima-texto').textContent = '';
     });
 </script>
 
