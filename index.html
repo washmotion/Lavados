@@ -7,396 +7,104 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --azul: #0057FF;
-    --azul-dark: #0040CC;
-    --negro: #0A0A0A;
-    --blanco: #FFFFFF;
-    --acento: #00E5FF;
+    --azul: #0057FF; --azul-dark: #0040CC;
+    --negro: #0A0A0A; --blanco: #FFFFFF; --acento: #00E5FF;
     --card-bg: rgba(255,255,255,0.035);
     --card-border: rgba(255,255,255,0.07);
     --card-radius: 16px;
   }
-
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); overflow-x: hidden; min-height: 100vh; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--negro);
-    color: var(--blanco);
-    overflow-x: hidden;
-    min-height: 100vh;
-  }
-
-  /* ── HERO ── */
   .hero {
     min-height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 24px 48px;
-    position: relative;
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.22) 0%, transparent 70%),
-      var(--negro);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 64px 24px 48px; position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,87,255,0.22) 0%, transparent 70%), var(--negro);
     overflow: hidden;
   }
-
   .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px; pointer-events: none;
   }
-
-  /* ── BADGE ── */
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,87,255,0.12);
-    border: 1px solid rgba(0,87,255,0.35);
-    color: var(--acento);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 7px 16px;
-    border-radius: 100px;
-    margin-bottom: 28px;
-    animation: fadeDown 0.6s ease both;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,87,255,0.12); border: 1px solid rgba(0,87,255,0.35);
+    color: var(--acento); font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 7px 16px; border-radius: 100px;
+    margin-bottom: 28px; animation: fadeDown 0.6s ease both;
   }
-
-  .badge-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--acento);
-    animation: pulse 2s ease infinite;
-    flex-shrink: 0;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.35; transform: scale(0.75); }
-  }
-
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(80px, 15vw, 168px);
-    line-height: 0.88;
-    letter-spacing: -0.01em;
-    margin-bottom: 8px;
-    animation: fadeDown 0.7s 0.1s ease both;
-  }
-
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acento); animation: pulse 2s ease infinite; flex-shrink: 0; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.75)} }
+  .hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(80px,15vw,168px); line-height: .88; letter-spacing: -.01em; margin-bottom: 8px; animation: fadeDown .7s .1s ease both; }
   .hero h1 span { color: var(--azul); display: block; }
-
-  .subtitle {
-    font-size: clamp(15px, 2vw, 18px);
-    color: rgba(255,255,255,0.45);
-    font-weight: 300;
-    max-width: 400px;
-    line-height: 1.65;
-    margin: 20px auto 36px;
-    animation: fadeDown 0.7s 0.2s ease both;
-  }
-
-  /* ── BOTÓN ── */
+  .subtitle { font-size: clamp(15px,2vw,18px); color: rgba(255,255,255,.45); font-weight: 300; max-width: 400px; line-height: 1.65; margin: 20px auto 36px; animation: fadeDown .7s .2s ease both; }
   .btn-reservar {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--azul);
-    color: var(--blanco);
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 18px 44px;
-    border-radius: 100px;
-    transition: all 0.25s ease;
-    animation: fadeDown 0.7s 0.3s ease both;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 40px rgba(0,87,255,0.35);
-    cursor: pointer;
-    border: none;
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--azul); color: var(--blanco); font-size: 16px; font-weight: 700;
+    padding: 18px 44px; border-radius: 100px; transition: all .25s ease;
+    animation: fadeDown .7s .3s ease both; position: relative; overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,87,255,.35); cursor: pointer; border: none;
   }
+  .btn-reservar::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,255,255,.12),transparent); border-radius:inherit; }
+  .btn-reservar:hover { background:var(--azul-dark); transform:translateY(-2px); box-shadow:0 0 56px rgba(0,87,255,.55); }
+  .btn-reservar svg { width:18px; height:18px; transition:transform .25s ease; }
+  .btn-reservar:hover svg { transform:translateX(4px); }
+  .clima-actual { margin-top:32px; font-size:14px; color:rgba(255,255,255,.4); animation:fadeDown .7s .4s ease both; display:flex; align-items:center; gap:8px; min-height:22px; }
+  .clima-actual span { color:rgba(255,255,255,.65); font-weight:500; }
 
-  .btn-reservar::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
-    border-radius: inherit;
-  }
+  /* CARDS */
+  .cards-section { padding:32px 24px 64px; max-width:880px; margin:0 auto; animation:fadeDown .7s .5s ease both; }
+  .group-label { font-size:10px; font-weight:600; color:rgba(255,255,255,.22); text-transform:uppercase; letter-spacing:.12em; margin-bottom:10px; margin-top:24px; }
+  .group-label:first-child { margin-top:0; }
+  .cards-grid   { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .cards-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
 
-  .btn-reservar:hover {
-    background: var(--azul-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 0 56px rgba(0,87,255,0.55);
-  }
+  .card { background:var(--card-bg); border:1px solid var(--card-border); border-radius:var(--card-radius); padding:18px 16px; min-height:110px; display:flex; flex-direction:column; transition:border-color .2s ease; }
+  .card:hover { border-color:rgba(0,87,255,.28); }
+  .card.fc { text-align:center; align-items:center; justify-content:center; gap:3px; }
+  .fc-dia { font-size:10px; font-weight:600; color:rgba(255,255,255,.28); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; }
+  .fc-icono { font-size:24px; display:block; margin-bottom:4px; }
+  .fc-temp { font-size:17px; font-weight:700; }
+  .fc-temp .mn { font-size:13px; font-weight:400; color:rgba(255,255,255,.32); margin-left:2px; }
+  .fc-desc { font-size:10px; color:rgba(255,255,255,.32); margin-top:3px; line-height:1.3; }
+  .card.info { justify-content:flex-start; }
+  .card-icon { font-size:20px; margin-bottom:10px; display:block; }
+  .card-label { font-size:10px; font-weight:600; color:rgba(255,255,255,.28); text-transform:uppercase; letter-spacing:.1em; margin-bottom:4px; }
+  .card-value { font-size:13px; font-weight:500; color:var(--blanco); line-height:1.55; }
+  .card-value .sub { font-size:11px; color:rgba(255,255,255,.38); font-weight:400; display:block; margin-top:1px; }
+  .estado-no { color:rgba(255,255,255,.28); }
+  .card.skeleton { background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.07) 50%,rgba(255,255,255,.04) 75%); background-size:200% 100%; animation:shimmer 1.4s infinite; border-color:transparent; }
+  @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-  .btn-reservar svg { width: 18px; height: 18px; transition: transform 0.25s ease; }
-  .btn-reservar:hover svg { transform: translateX(4px); }
+  footer { text-align:center; padding:24px; border-top:1px solid rgba(255,255,255,.05); color:rgba(255,255,255,.18); font-size:12px; }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
 
-  /* ── CLIMA ── */
-  .clima-actual {
-    margin-top: 32px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.4);
-    animation: fadeDown 0.7s 0.4s ease both;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 22px;
-  }
+  /* MODAL */
+  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.7); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); z-index:200; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity .3s ease; }
+  .modal-overlay.open { opacity:1; pointer-events:all; }
+  .modal-drawer { background:#111217; border:1px solid rgba(255,255,255,.09); border-bottom:none; border-radius:24px 24px 0 0; width:100%; max-width:560px; height:90vh; display:flex; flex-direction:column; transform:translateY(100%); transition:transform .4s cubic-bezier(.32,.72,0,1); position:relative; }
+  .modal-overlay.open .modal-drawer { transform:translateY(0); }
+  .modal-handle { width:36px; height:4px; background:rgba(255,255,255,.12); border-radius:2px; position:absolute; top:10px; left:50%; transform:translateX(-50%); }
+  .modal-bar { display:flex; align-items:center; justify-content:space-between; padding:20px 20px 14px; border-bottom:1px solid rgba(255,255,255,.07); flex-shrink:0; }
+  .modal-titulo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:.04em; color:rgba(255,255,255,.9); }
+  .modal-x { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.07); border:none; cursor:pointer; color:rgba(255,255,255,.55); font-size:16px; display:flex; align-items:center; justify-content:center; transition:background .2s; flex-shrink:0; }
+  .modal-x:hover { background:rgba(255,255,255,.13); color:#fff; }
+  .modal-body { flex:1; overflow:hidden; }
+  .modal-body iframe { width:100%; height:100%; border:none; display:block; }
 
-  .clima-actual span { color: rgba(255,255,255,0.65); font-weight: 500; }
-
-  /* ── SECCIÓN DE CARDS UNIFICADA ── */
-  .cards-section {
-    padding: 32px 24px 64px;
-    max-width: 880px;
-    margin: 0 auto;
-    animation: fadeDown 0.7s 0.5s ease both;
-  }
-
-  .group-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.22);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-bottom: 10px;
-  }
-
-  .group-label + .group-label { margin-top: 20px; }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-  }
-
-  /* ── CARD BASE ── */
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--card-radius);
-    padding: 18px 16px;
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    transition: border-color 0.2s ease;
-  }
-
-  .card:hover { border-color: rgba(0,87,255,0.28); }
-
-  /* Forecast */
-  .card.fc {
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-  }
-
-  .fc-dia {
-    font-size: 10px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.28);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-
-  .fc-icono { font-size: 24px; display: block; margin-bottom: 4px; }
-
-  .fc-temp { font-size: 17px; font-weight: 700; }
-
-  .fc-temp .mn {
-    font-size: 13px;
-    font-weight: 400;
-    color: rgba(255,255,255,0.32);
-    margin-left: 2px;
-  }
-
-  .fc-desc {
-    font-size: 10px;
-    color: rgba(255,255,255,0.32);
-    margin-top: 3px;
-    line-height: 1.3;
-  }
-
-  /* Info */
-  .card.info {
-    justify-content: flex-start;
-  }
-
-  .card-icon { font-size: 20px; margin-bottom: 10px; display: block; }
-
-  .card-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.28);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 4px;
-  }
-
-  .card-value {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--blanco);
-    line-height: 1.5;
-  }
-
-  .estado-no { color: rgba(255,255,255,0.28); }
-
-  /* Skeleton */
-  .card.skeleton {
-    background: linear-gradient(90deg,
-      rgba(255,255,255,0.04) 25%,
-      rgba(255,255,255,0.07) 50%,
-      rgba(255,255,255,0.04) 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.4s infinite;
-    border-color: transparent;
-  }
-
-  @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 24px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.18);
-    font-size: 12px;
-  }
-
-  /* ── ANIMACIONES ── */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  /* ── MODAL RESERVA (drawer desde abajo) ── */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 200;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-  }
-
-  .modal-overlay.open {
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  .modal-drawer {
-    background: #111217;
-    border: 1px solid rgba(255,255,255,0.09);
-    border-bottom: none;
-    border-radius: 24px 24px 0 0;
-    width: 100%;
-    max-width: 560px;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
-    position: relative;
-  }
-
-  .modal-overlay.open .modal-drawer {
-    transform: translateY(0);
-  }
-
-  .modal-handle {
-    width: 36px; height: 4px;
-    background: rgba(255,255,255,0.12);
-    border-radius: 2px;
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .modal-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 20px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    flex-shrink: 0;
-  }
-
-  .modal-titulo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.9);
-  }
-
-  .modal-x {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    border: none;
-    cursor: pointer;
-    color: rgba(255,255,255,0.55);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-    flex-shrink: 0;
-  }
-
-  .modal-x:hover { background: rgba(255,255,255,0.13); color: #fff; }
-
-  .modal-body {
-    flex: 1;
-    overflow: hidden;
-  }
-
-  .modal-body iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 620px) {
-    .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    .btn-reservar { padding: 16px 32px; font-size: 15px; }
-    .cards-section { padding: 24px 16px 48px; }
-    .modal-drawer { height: 92vh; }
+  @media (max-width:620px) {
+    .cards-grid, .cards-grid-2 { grid-template-columns:repeat(2,1fr); }
+    .btn-reservar { padding:16px 32px; font-size:15px; }
+    .cards-section { padding:24px 16px 48px; }
+    .modal-drawer { height:92vh; }
   }
 </style>
 </head>
 <body>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-drawer">
     <div class="modal-handle"></div>
@@ -410,69 +118,42 @@
   </div>
 </div>
 
-<!-- HERO -->
 <section class="hero">
-
-  <div class="badge">
-    <span class="badge-dot"></span>
-    <span id="badge-texto">Cargando...</span>
-  </div>
-
+  <div class="badge"><span class="badge-dot"></span><span id="badge-texto">Cargando...</span></div>
   <h1>Wash<span>Motion</span></h1>
-
-  <p class="subtitle">
-    Tu auto reluciente en minutos.<br>
-    Reservá tu turno sin llamadas ni esperas.
-  </p>
-
+  <p class="subtitle">Tu auto reluciente en minutos.<br>Reservá tu turno sin llamadas ni esperas.</p>
   <button class="btn-reservar" id="btn-reservar">
     Reservar turno
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-         stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12h14M12 5l7 7-7 7"/>
-    </svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
   </button>
-
-  <div class="clima-actual">
-    <span id="clima-icono">🌤</span>
-    <span id="clima-texto">Cargando clima...</span>
-  </div>
-
+  <div class="clima-actual"><span id="clima-icono">🌤</span><span id="clima-texto">Cargando clima...</span></div>
 </section>
 
-<!-- CARDS -->
 <section class="cards-section">
 
   <div class="group-label">Pronóstico</div>
   <div class="cards-grid" id="forecast-row">
-    <div class="card skeleton"></div>
-    <div class="card skeleton"></div>
-    <div class="card skeleton"></div>
-    <div class="card skeleton"></div>
+    <div class="card skeleton"></div><div class="card skeleton"></div>
+    <div class="card skeleton"></div><div class="card skeleton"></div>
   </div>
 
   <div class="group-label" style="margin-top:20px;">Dónde estamos</div>
-  <div class="cards-grid" id="info-grid">
-    <div class="card info" id="card-ubicacion-wrap">
-      <span class="card-icon">📍</span>
-      <div class="card-label">Ubicación de hoy</div>
-      <div class="card-value" id="card-ubicacion">Cargando...</div>
-    </div>
-    <div class="card info" id="card-horario-wrap">
-      <span class="card-icon">🕐</span>
-      <div class="card-label">Horario de hoy</div>
-      <div class="card-value" id="card-horario">Cargando...</div>
-    </div>
+  <div class="cards-grid" id="carpas-grid">
+    <div class="card skeleton"></div><div class="card skeleton"></div>
+  </div>
+
+  <!-- Cards fijas: siempre en 2 columnas, siempre visibles -->
+  <div class="cards-grid-2" style="margin-top:10px;">
     <div class="card info">
       <span class="card-icon">💬</span>
       <div class="card-label">Consultas</div>
-      <!-- ↓ REEMPLAZÁ CON TU WHATSAPP -->
-      <div class="card-value">WhatsApp<br>+54 9 341 000-0000</div>
+      <!-- REEMPLAZÁ CON TU WHATSAPP -->
+      <div class="card-value">WhatsApp<span class="sub">+54 9 341 000-0000</span></div>
     </div>
     <div class="card info">
       <span class="card-icon">✨</span>
       <div class="card-label">Servicio</div>
-      <div class="card-value">Lavado completo<br>interior y exterior</div>
+      <div class="card-value">Lavado completo<span class="sub">interior y exterior</span></div>
     </div>
   </div>
 
@@ -481,121 +162,76 @@
 <footer>© 2026 Wash Motion — Lavado de autos</footer>
 
 <script>
-  const WEBAPP_URL   = 'https://script.google.com/macros/s/AKfycbyumdzQe1XiUxGgL6f-RjwBWs4p61vCXExt0VlwOvjFOWFKSnA4LF63MtBz5AlzmSWj/exec';
+  const WEBAPP_URL   = 'https://script.google.com/macros/s/AKfycbxefwlQKMZdB3QiWYfWmVNehIskNQAbcNqwMes6OawQR1xfjHhwYPkxtUxhyGC9KoI/exec';
   const APPSHEET_URL = 'https://www.appsheet.com/start/f485a1e0-0216-438c-baea-ae4a8f492d79';
-  const LAT  = -32.9468;
-  const LON  = -60.6393;
+  const LAT = -32.9468, LON = -60.6393;
   const DIAS = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+  const WMO = {0:'Despejado',1:'Mayorm. despejado',2:'Parc. nublado',3:'Nublado',45:'Neblina',48:'Neblina',51:'Llovizna leve',53:'Llovizna',55:'Llovizna int.',61:'Lluvia leve',63:'Lluvia',65:'Lluvia int.',71:'Nieve leve',73:'Nieve',75:'Nieve int.',80:'Chaparrones',81:'Chaparrones',82:'Chaparrones f.',95:'Tormenta',96:'Tormenta',99:'Tormenta'};
+  const ICONOS = {0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',61:'🌧',63:'🌧',65:'🌧',71:'❄️',73:'❄️',75:'❄️',80:'🌦',81:'🌧',82:'⛈',95:'⛈',96:'⛈',99:'⛈'};
 
-  const WMO = {
-    0:'Despejado',1:'Mayorm. despejado',2:'Parc. nublado',3:'Nublado',
-    45:'Neblina',48:'Neblina',51:'Llovizna leve',53:'Llovizna',55:'Llovizna int.',
-    61:'Lluvia leve',63:'Lluvia',65:'Lluvia int.',71:'Nieve leve',73:'Nieve',75:'Nieve int.',
-    80:'Chaparrones',81:'Chaparrones',82:'Chaparrones f.',95:'Tormenta',96:'Tormenta',99:'Tormenta',
-  };
-  const ICONOS = {
-    0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',48:'🌫',51:'🌦',53:'🌦',55:'🌧',
-    61:'🌧',63:'🌧',65:'🌧',71:'❄️',73:'❄️',75:'❄️',80:'🌦',81:'🌧',82:'⛈',
-    95:'⛈',96:'⛈',99:'⛈',
-  };
-
-  // ── MODAL ──
+  // MODAL
   const overlay = document.getElementById('modal-overlay');
   const iframe  = document.getElementById('reserva-iframe');
-  let loaded    = false;
-
+  let loaded = false;
   document.getElementById('btn-reservar').addEventListener('click', () => {
     if (!loaded) { iframe.src = APPSHEET_URL; loaded = true; }
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
-
-  function cerrar() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
+  function cerrar() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('modal-x').addEventListener('click', cerrar);
   overlay.addEventListener('click', e => { if (e.target === overlay) cerrar(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrar(); });
 
-  // ── UBICACIÓN DINÁMICA ──
+  // CARPAS DINÁMICAS
   fetch(WEBAPP_URL)
     .then(r => r.json())
     .then(data => {
-      const grid = document.getElementById('info-grid');
+      const grid = document.getElementById('carpas-grid');
+      grid.innerHTML = '';
       if (!data.operando || !data.ubicaciones || data.ubicaciones.length === 0) {
-        document.getElementById('card-ubicacion').innerHTML = '<span class="estado-no">Sin operación hoy</span>';
-        document.getElementById('card-horario').innerHTML   = '<span class="estado-no">—</span>';
-        document.getElementById('badge-texto').textContent  = 'Sin operación hoy';
+        document.getElementById('badge-texto').textContent = 'Sin operación hoy';
+        grid.innerHTML = `<div class="card info"><span class="card-icon">📍</span><div class="card-label">Ubicación de hoy</div><div class="card-value estado-no">Sin operación hoy</div></div>`;
         return;
       }
       document.getElementById('badge-texto').textContent = 'Abierto hoy — turnos disponibles';
-      if (data.ubicaciones.length === 1) {
-        const u = data.ubicaciones[0];
-        document.getElementById('card-ubicacion').innerHTML =
-          u.direccion
-            ? `${u.nombre}<br><span style="font-size:11px;color:rgba(255,255,255,0.38)">${u.direccion}</span>`
-            : u.nombre;
-        document.getElementById('card-horario').textContent = u.horario;
-      } else {
-        document.getElementById('card-ubicacion-wrap').remove();
-        document.getElementById('card-horario-wrap').remove();
-        data.ubicaciones.reverse().forEach(u => {
-          const card = document.createElement('div');
-          card.className = 'card info';
-          card.innerHTML = `
-            <span class="card-icon">📍</span>
-            <div class="card-label">Hoy</div>
-            <div class="card-value">
-              <strong>${u.nombre}</strong>
-              ${u.direccion ? `<br><span style="font-size:11px;color:rgba(255,255,255,0.38)">${u.direccion}</span>` : ''}
-              <br><span style="font-size:11px;color:rgba(255,255,255,0.45)">${u.horario}</span>
-            </div>`;
-          grid.insertBefore(card, grid.firstChild);
-        });
-      }
+      data.ubicaciones.forEach(u => {
+        const card = document.createElement('div');
+        card.className = 'card info';
+        card.innerHTML = `
+          <span class="card-icon">📍</span>
+          <div class="card-label">Hoy · ${u.horario}</div>
+          <div class="card-value">${u.nombre}${u.direccion ? `<span class="sub">${u.direccion}</span>` : ''}</div>`;
+        grid.appendChild(card);
+      });
     })
     .catch(() => {
-      document.getElementById('card-ubicacion').textContent = 'No disponible';
-      document.getElementById('card-horario').textContent   = '—';
-      document.getElementById('badge-texto').textContent    = 'Wash Motion';
+      document.getElementById('badge-texto').textContent = 'Wash Motion';
+      document.getElementById('carpas-grid').innerHTML = `<div class="card info"><span class="card-icon">📍</span><div class="card-label">Ubicación de hoy</div><div class="card-value estado-no">No disponible</div></div>`;
     });
 
-  // ── CLIMA + FORECAST ──
+  // CLIMA
   fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&temperature_unit=celsius&timezone=America%2FArgentina%2FBuenos_Aires&forecast_days=4`)
     .then(r => r.json())
     .then(data => {
       const w = data.current_weather;
       document.getElementById('clima-icono').textContent = ICONOS[w.weathercode] || '🌤';
-      document.getElementById('clima-texto').textContent =
-        `${Math.round(w.temperature)}°C — ${WMO[w.weathercode] || 'Variable'}`;
-
+      document.getElementById('clima-texto').textContent = `${Math.round(w.temperature)}°C — ${WMO[w.weathercode] || 'Variable'}`;
       const row = document.getElementById('forecast-row');
       row.innerHTML = '';
       for (let i = 0; i < 4; i++) {
         const fecha  = new Date(data.daily.time[i] + 'T12:00:00');
         const nombre = i === 0 ? 'Hoy' : i === 1 ? 'Mañana' : DIAS[fecha.getDay()];
-        const c      = data.daily.weathercode[i];
-        const max    = Math.round(data.daily.temperature_2m_max[i]);
-        const min    = Math.round(data.daily.temperature_2m_min[i]);
-        const card   = document.createElement('div');
+        const c   = data.daily.weathercode[i];
+        const max = Math.round(data.daily.temperature_2m_max[i]);
+        const min = Math.round(data.daily.temperature_2m_min[i]);
+        const card = document.createElement('div');
         card.className = 'card fc';
-        card.innerHTML = `
-          <div class="fc-dia">${nombre}</div>
-          <span class="fc-icono">${ICONOS[c] || '🌤'}</span>
-          <div class="fc-temp">${max}°<span class="mn">${min}°</span></div>
-          <div class="fc-desc">${WMO[c] || 'Variable'}</div>`;
+        card.innerHTML = `<div class="fc-dia">${nombre}</div><span class="fc-icono">${ICONOS[c]||'🌤'}</span><div class="fc-temp">${max}°<span class="mn">${min}°</span></div><div class="fc-desc">${WMO[c]||'Variable'}</div>`;
         row.appendChild(card);
       }
     })
-    .catch(() => {
-      document.getElementById('clima-icono').textContent = '';
-      document.getElementById('clima-texto').textContent = '';
-      document.getElementById('forecast-row').innerHTML  = '';
-    });
+    .catch(() => { document.getElementById('clima-icono').textContent=''; document.getElementById('clima-texto').textContent=''; document.getElementById('forecast-row').innerHTML=''; });
 </script>
-
 </body>
-
 </html>
